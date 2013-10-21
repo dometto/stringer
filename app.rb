@@ -61,7 +61,7 @@ class Stringer < Sinatra::Base
     serve "/css",    from: "app/public/css"
     serve "/images", from: "app/public/img"
 
-    js :application, "#{url_base}/js/application.js", [
+    js :application, "/stringer/js/application.js", [
       "/js/jquery-min.js",
       "/js/bootstrap-min.js",
       "/js/bootstrap.file-input.js",
@@ -72,7 +72,7 @@ class Stringer < Sinatra::Base
       "/js/app.js"
     ]
 
-    css :application, "#{url_base}/css/application.css", [
+    css :application, "/stringer/css/application.css", [
       "/css/bootstrap-min.css",
       "/css/flat-ui-no-icons.css",
       "/css/font-awesome-min.css",

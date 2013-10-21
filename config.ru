@@ -9,7 +9,6 @@ Bundler.require
 #end
 
 require "./app"
-require "rack/mount"
 require "rack/rewrite"
 use Rack::Rewrite do
   rewrite %r{^/css/(.*)}, '/stringer/css/$1'

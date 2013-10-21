@@ -4,6 +4,7 @@ ruby '1.9.3'
 group :production do
   gem "unicorn", "~> 4.6.2"
   gem "pg", "~> 0.15.1"
+  gem "rack-rewrite"
 end
 
 group :development do
