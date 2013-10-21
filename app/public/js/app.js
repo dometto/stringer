@@ -163,7 +163,7 @@ var StoryView = Backbone.View.extend({
 
 var StoryList = Backbone.Collection.extend({
   model: Story,
-  url: "/stories",
+  url: "/stringer/stories",
 
   initialize: function() {
     this.cursorPosition = -1;
@@ -319,7 +319,7 @@ $(document).ready(function() {
     var feedId = $this.parents("li").data("id");
 
     if (feedId > 0) {
-      $.ajax({url: "/feeds/" + feedId, type: "DELETE"})
+      $.ajax({url: "/stringer/feeds/" + feedId, type: "DELETE"})
        .success(function() {
           $this.parents("li").fadeOut(500, function () {
             $(this).remove();
