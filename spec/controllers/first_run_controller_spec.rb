@@ -79,15 +79,15 @@ describe "FirstRunController" do
     it "should redirect any requests to first run stuff" do
       get "/"
       last_response.status.should be 302
-      URI::parse(last_response.location).path.should eq "/news"
+      URI::parse(last_response.location).path.should eq "#{url_base}/news"
 
       get "/setup/password"
       last_response.status.should be 302
-      URI::parse(last_response.location).path.should eq "/news"
+      URI::parse(last_response.location).path.should eq "#{url_base}/news"
 
       get "/setup/tutorial"
       last_response.status.should be 302
-      URI::parse(last_response.location).path.should eq "/news"
+      URI::parse(last_response.location).path.should eq "#{url_base}/news"
     end
   end
 end

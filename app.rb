@@ -101,7 +101,7 @@ class Stringer < Sinatra::Base
 
   get "/" do
     if UserRepository.setup_complete?
-      redirect to("/stringer/news")
+      redirect to("/news")
     else
       redirect to("/setup/password")
     end

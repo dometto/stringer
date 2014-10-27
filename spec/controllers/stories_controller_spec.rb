@@ -15,7 +15,7 @@ describe "StoriesController" do
     end
     
     it "display list of unread stories" do
-      get "/news"
+      get "#{url_base}/news"
 
       last_response.body.should have_tag("#stories")
     end
@@ -23,14 +23,14 @@ describe "StoriesController" do
     it "displays the blog title and article title" do
       StoryRepository.should_receive(:unread).and_return([story_one])
 
-      get "/news"
+      get "#{url_base}/news"
 
       last_response.body.should include(story_one.headline)
       last_response.body.should include(story_one.source)
     end
 
     it "displays all user actions" do
-      get "/news"
+      get "#{url_base}/news"
 
       last_response.body.should have_tag("#mark-all")
       last_response.body.should have_tag("#refresh")
@@ -39,7 +39,7 @@ describe "StoriesController" do
     end
 
     it "should have correct footer links" do
-      get "/news"
+      get "#{url_base}/news"
 
       page = last_response.body
       page.should have_tag("a", with: { href: "/feeds/export"})
@@ -50,7 +50,7 @@ describe "StoriesController" do
     it "displays a zen-like message when there are no unread stories" do
       StoryRepository.stub(:unread).and_return([])
 
-      get "/news"
+      get "#{url_base}/news"
 
       last_response.body.should have_tag("#zen")
     end
@@ -154,7 +154,7 @@ describe "StoriesController" do
       post "/stories/mark_all_as_read", story_ids: ["1", "2", "3"]
 
       last_response.status.should be 302
-      URI::parse(last_response.location).path.should eq "/news"
+      URI::parse(last_response.location).path.should eq "#{url_base}/news"
     end
   end
 
