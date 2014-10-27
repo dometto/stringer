@@ -43,6 +43,17 @@ describe FeedRepository do
     end
   end
 
+  describe ".update_feed" do
+    it "saves the name and url" do
+      feed = Feed.new
+
+      FeedRepository.update_feed(feed, 'Test Feed', 'example.com/feed')
+
+      feed.name.should eq 'Test Feed'
+      feed.url.should eq 'example.com/feed'
+    end
+  end
+
   describe "fetch" do
     let(:feed) { Feed.new(id: 1) }
 

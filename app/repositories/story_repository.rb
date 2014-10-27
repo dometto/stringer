@@ -3,6 +3,8 @@ require_relative "../utils/sample_story"
 
 class StoryRepository
   def self.add(entry, feed)
+    entry.url = normalize_url(entry.url, feed.url)
+
     Story.create(feed: feed,
                 title: entry.title,
                 permalink: entry.url,
@@ -23,7 +25,11 @@ class StoryRepository
 
   def self.fetch_unread_by_timestamp(timestamp)
     timestamp = Time.at(timestamp.to_i)
-    Story.where("created_at < ? AND is_read = ?", timestamp, false)
+    Story.where('stories.created_at < ?', timestamp).where(is_read: false)
+  end
+
+  def self.fetch_unread_by_timestamp_and_group(timestamp, group_id)
+    fetch_unread_by_timestamp(timestamp).joins(:feed).where(feeds: { group_id: group_id })
   end
 
   def self.fetch_unread_for_feed_by_timestamp(feed_id, timestamp)
@@ -33,6 +39,10 @@ class StoryRepository
 
   def self.save(story)
     story.save
+  end
+
+  def self.exists?(id, feed_id)
+    Story.exists?(entry_id: id, feed_id: feed_id)
   end
 
   def self.unread
@@ -83,7 +93,10 @@ class StoryRepository
   end
 
   def self.sanitize(content)
-    Loofah.fragment(content.gsub(/<wbr>/i, "")).scrub!(:prune).to_s
+    Loofah.fragment(content.gsub(/<wbr\s*>/i, ""))
+          .scrub!(:prune)
+          .scrub!(:unprintable)
+          .to_s
   end
 
   def self.expand_absolute_urls(content, base_url)
@@ -94,12 +107,28 @@ class StoryRepository
       doc.css("#{tag}[#{attr}]").each do |node|
         url = node.get_attribute(attr)
         unless url =~ abs_re
-          node.set_attribute(attr, URI.join(base_url, url).to_s)
+          begin
+            node.set_attribute(attr, URI.join(base_url, url).to_s)
+          rescue URI::InvalidURIError
+            # Just ignore. If we cannot parse the url, we don't want the entire
+            # import to blow up.
+          end
         end
       end
     end
 
     doc.to_html
+  end
+
+  def self.normalize_url(url, base_url)
+    uri      = URI.parse(url)
+    base_uri = URI.parse(base_url)
+
+    unless uri.scheme
+      uri.scheme = base_uri.scheme || 'http'
+    end
+
+    uri.to_s
   end
 
   def self.samples

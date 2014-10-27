@@ -26,6 +26,30 @@ describe "FeedsController" do
     end
   end
 
+  describe "GET /feeds/:feed_id/edit" do
+    it "fetches a feed given the id" do
+      feed = Feed.new(name: 'Rainbows and unicorns', url: 'example.com/feed')
+      FeedRepository.should_receive(:fetch).with("123").and_return(feed)
+
+      get "/feeds/123/edit"
+
+      last_response.body.should include('Rainbows and unicorns')
+      last_response.body.should include('example.com/feed')
+    end
+  end
+
+  describe "PUT /feeds/:feed_id" do
+    it "updates a feed given the id" do
+      feed = FeedFactory.build(url: 'example.com/atom')
+      FeedRepository.should_receive(:fetch).with("123").and_return(feed)
+      FeedRepository.should_receive(:update_feed).with(feed, 'Test', 'example.com/feed')
+
+      put "/feeds/123", feed_id: "123", feed_name: "Test", feed_url: "example.com/feed"
+
+      last_response.should be_redirect
+    end
+  end
+
   describe "DELETE /feeds/:feed_id" do
     it "deletes a feed given the id" do
       FeedRepository.should_receive(:delete).with("123")
@@ -47,7 +71,7 @@ describe "FeedsController" do
   describe "POST /feeds" do
     context "when the feed url is valid" do
       let(:feed_url) { "http://example.com/" }
-      let(:valid_feed) { stub(valid?: true) }
+      let(:valid_feed) { double(valid?: true) }
 
       it "adds the feed and queues it to be fetched" do
         AddNewFeed.should_receive(:add).with(feed_url).and_return(valid_feed)
@@ -75,7 +99,7 @@ describe "FeedsController" do
 
     context "when the feed url is one we already subscribe to" do
       let(:feed_url) { "http://example.com/" }
-      let(:invalid_feed) { stub(valid?: false) }
+      let(:invalid_feed) { double(valid?: false) }
 
       it "adds the feed and queues it to be fetched" do
         AddNewFeed.should_receive(:add).with(feed_url).and_return(invalid_feed)

@@ -30,6 +30,13 @@ en:
         already_subscribed_error: You are already subscribed to this feed...
         feed_not_found_error: We couldn't find that feed. Try again.
       title: Need new stories?
+    edit:
+      fields:
+        feed_name: Feed Name
+        feed_url: Feed URL
+        submit: Save
+      flash:
+        updated_successfully: Updated the feed for ya'!
     index:
       add: add
       add_some_feeds: Hey, you should %{add} some feeds.
@@ -43,13 +50,13 @@ en:
         password_confirmation: Confirm
       flash:
         passwords_dont_match: Hey, your password confirmation didn't match. Try again.
-      subtitle: ! 'There is only one user: you.'
+      subtitle: 'There is only one user: you.'
       title: Stringer is
   flash:
     cookies_required: Well, this is awkward. Cookies are required for the app to work properly.
     js_required: Well, this is awkward. Javascript is required for the app to work properly.
   import:
-    description: ! '%{link} your feeds from Google Reader and import them.'
+    description: '%{link} your feeds from Google Reader and import them.'
     export: Export
     fields:
       import: Import
@@ -89,6 +96,8 @@ en:
     shortcuts:
       keys:
         a: Add a feed
+        bv: Go to story URL
+        f: Go to feeds page
         jk: Next/previous story
         left: Previous page
         m: Mark item as read/unread
@@ -99,7 +108,6 @@ en:
         right: Next page
         s: Mark item as starred/unstarred
         shifta: Mark all as read
-        v: Go to story URL
       title: Keyboard shortcuts
     zen:
       archive: view all items
@@ -128,18 +136,21 @@ en:
     keep_unread: Keep unread
   time:
     formats:
-      default: ! '%b %d, %H:%M'
+      default: '%b %d, %H:%M'
   tutorial:
     add_feed: add feed
     as_read: as read
     click_to_read: (click to read)
     description: We're getting you some stories to read, give us a second.
+    heroku_hourly_task: You need to add an hourly task to check for new stories.
+    heroku_one_more_thing: One more thing...
+    heroku_scheduler: Go to the Heroku Scheduler and add this task
     mark_all: mark all
     ready: Okay, it's ready!
     refresh: refresh
     simple: simple
     start: Start Reading
     subtitle: Here's the instruction manual.
-    title: ! 'Stringer is '
+    title: 'Stringer is '
     your_feeds: your feeds
     your_stories: your stories

@@ -15,6 +15,10 @@ hr {
   margin: 20px auto;
 }
 
+code {
+  white-space: normal;
+}
+
 .container {
   width: 100%;
   max-width: 720px;
@@ -130,6 +134,10 @@ a.btn, a.btn:hover {
 
 li.story.read {
   opacity: 0.5;
+}
+
+li.story.keepUnread .story-preview {
+  font-weight: bold;
 }
 
 li.story.open {
@@ -362,6 +370,18 @@ li.feed .last-updated-time {
   display: inline-block;
 }
 
+li.feed .edit-feed {
+  cursor: pointer;
+}
+
+li.feed .edit-feed a {
+  text-align: right;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-left: 5px;
+  color: #000;
+}
+
 li.feed .remove-feed {
   cursor: pointer;
 }
@@ -370,7 +390,7 @@ li.feed .remove-feed a {
   text-align: center;
   padding-left: 3px;
   padding-right: 3px;
-  margin-left: 10px;
+  margin-left: 5px;
   color: #C0392B;
 }
 
@@ -465,7 +485,7 @@ li.feed .remove-feed a:hover {
   transition: 0.25s;
 }
 
-.setup #password, .setup #password-confirmation, .setup #feed-url {
+.setup #password, .setup #password-confirmation, .setup #feed-url, .setup #feed-name {
   padding-left: 100px;
   padding-right: 36px;
 }
@@ -548,6 +568,11 @@ kbd {
   text-shadow: 0 1px 0 #FFF;
   line-height: 1.4;
   white-space: nowrap;
+}
+
+
+#shortcuts .modal-body {
+  max-height: 500px;
 }
 
 ul.shortcut-legend li {

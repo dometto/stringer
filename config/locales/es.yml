@@ -30,6 +30,13 @@ es:
         already_subscribed_error: Ya te suscribiste a esta feed...
         feed_not_found_error: No pudimos encontrar esa feed. Inténtalo de vuelta.
       title: ¿Necesitas nuevas historias?
+    edit:
+      fields:
+        feed_name: Nombre fuente
+        feed_url: Fuente URL
+        submit: Guardar
+      flash:
+        updated_successfully: la fuente ha sido actualizada para ti!
     index:
       add: agregar
       add_some_feeds: Oye, deberias %{add} algunas feeds.
@@ -43,13 +50,13 @@ es:
         password_confirmation: Confirmar
       flash:
         passwords_dont_match: Oye, tus contraseñas no coinciden. Inténtalo de vuelta.
-      subtitle: ! 'Nada mas hay un usuario: tu.'
+      subtitle: 'Nada mas hay un usuario: tu.'
       title: Stringer es
   flash:
     cookies_required: Bueno esto es incomodo. Cookies son requeridas para que la aplicación funcione correctamente.
     js_required: Bueno esto es incomodo. JavaScript es requerido para que la aplicación funcione correctamente.
   import:
-    description: ! '%{link} tus feeds desde Google Reader e importalas.'
+    description: '%{link} tus feeds desde Google Reader e importalas.'
     export: Exportar
     fields:
       import: Importar
@@ -60,7 +67,7 @@ es:
     back_to_work: ¡Regresa a tu trabajo, holgazán!
     export: Exportar
     hey: ¡Oye!
-    import: 
+    import: Importar
     logout: Salir
     support: Soporte
     title: stringer | tu compadre de rss
@@ -89,6 +96,8 @@ es:
     shortcuts:
       keys:
         a: Añadir una feed
+        bv: Ir a URL de historia
+        f: Vaya a la pagina de las fuentes
         jk: Siguiente/previa historia
         left: Página anterior
         m: Marcar item como leído/no leído
@@ -99,7 +108,6 @@ es:
         right: Siguiente página
         s: Marcar item como destacado/no destacado
         shifta: Marcar todo como leído
-        v: Ir a URL de historia
       title: Atajos de teclado
     zen:
       archive: ver todos los itemes
@@ -128,18 +136,21 @@ es:
     keep_unread: Dejar sin leer
   time:
     formats:
-      default: ! '%d de %b, %H:%M'
+      default: '%d de %b, %H:%M'
   tutorial:
     add_feed: agregar feed
     as_read: como leído
     click_to_read: (haz click para leer)
     description: Estamos consiguiendo unas historias para leer, danos un moment.
+    heroku_hourly_task: Debe añadir una hora de trabajo para poder buscar nuevas historias
+    heroku_one_more_thing: Una cosa mas...
+    heroku_scheduler: Vaya al Programador Heroku y añada esta tarea
     mark_all: Marcar todas
     ready: ¡Bueno esta listo!
     refresh: refrescar
     simple: simple
     start: Comenzar a Leer
     subtitle: Aqui esta el manual de instrucciones
-    title: ! 'Stringer es '
+    title: 'Stringer es '
     your_feeds: tus feeds
     your_stories: tus historias
