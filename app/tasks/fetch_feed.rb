@@ -1,4 +1,4 @@
-require "feedzirra"
+require "feedjira"
 
 require_relative "../repositories/story_repository"
 require_relative "../repositories/feed_repository"
@@ -8,15 +8,23 @@ class FetchFeed
 
   USER_AGENT = "Stringer (https://github.com/swanson/stringer)"
 
-  def initialize(feed, feed_parser = Feedzirra::Feed, logger = nil)
+  def initialize(feed, parser: Feedjira::Feed, logger: nil)
     @feed = feed
-    @parser = feed_parser
+    @parser = parser
     @logger = logger
   end
 
   def fetch
     begin
-      raw_feed = @parser.fetch_and_parse(@feed.url, user_agent: USER_AGENT, if_modified_since: @feed.last_fetched, timeout: 30)
+      options = {
+        user_agent: USER_AGENT, 
+        if_modified_since: @feed.last_fetched, 
+        timeout: 30, 
+        max_redirects: 2,
+        compress: true
+      }
+      
+      raw_feed = @parser.fetch_and_parse(@feed.url, options)
 
       if raw_feed == 304
         @logger.info "#{@feed.url} has not been modified since last fetch" if @logger
@@ -38,7 +46,7 @@ class FetchFeed
 
   private
   def new_entries_from(raw_feed)
-    finder = FindNewStories.new(raw_feed, @feed.last_fetched, latest_entry_id)
+    finder = FindNewStories.new(raw_feed, @feed.id, @feed.last_fetched, latest_entry_id)
     finder.new_stories
   end
 

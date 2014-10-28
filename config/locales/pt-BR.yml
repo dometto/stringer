@@ -30,6 +30,13 @@ pt-BR:
         already_subscribed_error: Você já está inscrito neste feed...
         feed_not_found_error: Não conseguimos achar este feed. Tente novamente.
       title: Precisa de novas histórias?
+    edit:
+      fields:
+        feed_name: 
+        feed_url: 
+        submit: 
+      flash:
+        updated_successfully: 
     index:
       add: adicionar
       add_some_feeds: Ei, você deveria %{add} alguns feeds.
@@ -43,13 +50,13 @@ pt-BR:
         password_confirmation: Confirmar
       flash:
         passwords_dont_match: Hey, a confirmação de senha não confere. Tente novamente.
-      subtitle: ! 'Existe apenas um usuário: você.'
+      subtitle: 'Existe apenas um usuário: você.'
       title: Stringer é
   flash:
     cookies_required: Bem, isso é estranho. É necessário habilitar Cookies para que o aplicativo funcione corretamente.
     js_required: Bem, isso é estranho. É necessário habilitar Javascript para que o aplicativo funcione corretamente.
   import:
-    description: ! '%{link} seus feeds do Google Reader e importe-os.'
+    description: '%{link} seus feeds do Google Reader e importe-os.'
     export: Exportar
     fields:
       import: Importar
@@ -60,7 +67,7 @@ pt-BR:
     back_to_work: Volte ao trabalho, preguiçoso!
     export: Exportar
     hey: Hey!
-    import: 
+    import: Importar
     logout: Sair
     support: Suporte
     title: stringer | seu companheiro de rss
@@ -89,6 +96,8 @@ pt-BR:
     shortcuts:
       keys:
         a: Adicione um feed
+        bv: Ir para a URL da história
+        f: 
         jk: História próxima/anterior
         left: Página anterior
         m: Marcar item como lido/não lido
@@ -96,10 +105,9 @@ pt-BR:
         oenter: Alterna história aberta/fechada
         or: ou
         r: Atualizar
-        right: 
-        s: 
+        right: Próxima Página
+        s: Marcar item com estrela/Remover estrela
         shifta: Marcar tudo como lido
-        v: Ir para a URL da história
       title: Atalhos de teclado
     zen:
       archive: visualizar todos os itens
@@ -120,26 +128,29 @@ pt-BR:
       subtitle: Bem vindo novamente, amigo.
       title: Stringer fala
   starred:
-    next: 
-    of: 
-    previous: 
-    sorry: 
+    next: Próximo
+    of: de
+    previous: Anterior
+    sorry: Desculpe, você ainda não tem histórias com estrela!
   stories:
     keep_unread: Continue não lido
   time:
     formats:
-      default: ! '%d de %b, %H:%M'
+      default: '%d de %b, %H:%M'
   tutorial:
     add_feed: adicionar feed
     as_read: como lido
     click_to_read: (clique para ler)
     description: Nós estamos pegando algumas histórias para leitura, dê-nos um segundo.
+    heroku_hourly_task: 
+    heroku_one_more_thing: 
+    heroku_scheduler: 
     mark_all: marcar todos
     ready: Ok, está pronto!
     refresh: atualizar
     simple: simples
     start: Começar a leitura
     subtitle: Aqui está o manual de instruções.
-    title: ! 'Stringer é '
+    title: 'Stringer é '
     your_feeds: seus feeds
     your_stories: suas histórias

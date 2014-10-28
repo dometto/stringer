@@ -9,6 +9,21 @@ class Stringer < Sinatra::Base
     erb :'feeds/index'
   end
 
+  get "/feeds/:id/edit" do
+    @feed = FeedRepository.fetch(params[:id])
+
+    erb :'feeds/edit'
+  end
+
+  put "/feeds/:id" do
+    feed = FeedRepository.fetch(params[:id])
+
+    FeedRepository.update_feed(feed, params[:feed_name], params[:feed_url])
+
+    flash[:success] = t('feeds.edit.flash.updated_successfully')
+    redirect to('/feeds')
+  end
+
   delete "/feeds/:feed_id" do
     FeedRepository.delete(params[:feed_id])
 

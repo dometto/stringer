@@ -9,7 +9,7 @@ class Stringer < Sinatra::Base
   namespace "/setup" do
     before do
       if UserRepository.setup_complete?
-        redirect to("/news")
+        redirect to("#{url_base}/news")
       end
     end
 

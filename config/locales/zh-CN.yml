@@ -30,6 +30,13 @@ zh-CN:
         already_subscribed_error: 你已经订阅过这个供稿了哟...
         feed_not_found_error: 呃，我们无法识别这个供稿地址。麻烦你检查后再试一次。
       title: 想要添加新内容？
+    edit:
+      fields:
+        feed_name: 
+        feed_url: 
+        submit: 
+      flash:
+        updated_successfully: 
     index:
       add: 添加
       add_some_feeds: 你应该%{add}一些订阅哟~
@@ -49,7 +56,7 @@ zh-CN:
     cookies_required: 抱歉，你的浏览器禁用了Cookie记录功能。为了你的正常使用，请开启浏览器的Cookie功能。
     js_required: 抱歉，你的浏览器禁用了Javascript脚本。为了你的正常使用，请开启脚本功能。
   import:
-    description: ! '%{link}你在Google Reader上的订阅列表然后再将它们导入这里'
+    description: '%{link}你在Google Reader上的订阅列表然后再将它们导入这里'
     export: 导出
     fields:
       import: 导入
@@ -60,7 +67,7 @@ zh-CN:
     back_to_work: 懒鬼，还不赶紧去干活！
     export: 导出
     hey: 喂！
-    import: 
+    import: 导入
     logout: 退出
     support: 支持
     title: stringer | your rss buddy
@@ -89,6 +96,8 @@ zh-CN:
     shortcuts:
       keys:
         a: 添加新订阅
+        bv: 转到原网址
+        f: 
         jk: 下一个/上一个故事
         left: 上一页
         m: 将一个条目标为已读/未读
@@ -99,7 +108,6 @@ zh-CN:
         right: 下一页
         s: 将条目标为加注星标/取消星标
         shifta: 全部标为已读
-        v: 转到原网址
       title: 快捷键
     zen:
       archive: 查看所有故事
@@ -128,18 +136,21 @@ zh-CN:
     keep_unread: 保持未读状态
   time:
     formats:
-      default: ! '%b%d日 %H:%M'
+      default: '%b%d日 %H:%M'
   tutorial:
     add_feed: 添加新订阅
     as_read: 已读
     click_to_read: （点击阅读）
     description: 我们正在努力的加载您订阅的内容，请稍等。
+    heroku_hourly_task: 
+    heroku_one_more_thing: 
+    heroku_scheduler: 
     mark_all: 全部标为
     ready: 好了，我想你已经准备好了~
     refresh: 刷新
     simple: simple
     start: 开始阅读吧！
     subtitle: 这是一份简单的指导手册。
-    title: ! 'Stringer is '
+    title: 'Stringer is '
     your_feeds: 你的订阅列表
     your_stories: 你订阅的内容

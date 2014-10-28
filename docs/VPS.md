@@ -14,6 +14,19 @@ The first step is installing some essential dependencies from your VPS's package
 On CentOS after installing Postgres, I needed to run these commands, Fedora likely the same.
 
     service postgresql initdb && service postgresql start
+    
+#### Arch Linux
+
+    pacman -S git postgresql base-devel libxml2 libxslt curl sqlite readline postgresql-libs
+    
+Here are some Arch specific instructions for setting up postgres
+
+    systemd-tmpfiles --create postgresql.conf
+    chown -c -R postgres:postgres /var/lib/postgres
+    sudo su - postgres -c "initdb --locale en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'"
+    systemctl start postgresql
+    systemctl enable postgresql
+
 
 Set up the database
 ===================
@@ -31,8 +44,10 @@ Create your stringer user
 
 We will run stringer as it's own user for security, also we will be installing a specific version of ruby to stringer user's home directory, this saves us worrying whether the version of ruby and some dependencies provided by your distro are compatible with Stringer.
 
-    adduser stringer --shell /bin/bash
-    su stringer
+    useradd stringer -m -s /bin/bash
+    su -l stringer
+
+Always use -l switch when you switch user to your stringer user, without it your modified .bash_profile or .profile file will be ignored. 
 
 Install Ruby for your stringer user
 ===================================
@@ -46,14 +61,18 @@ We are going to use Rbenv to manage the version of Ruby you use.
     git clone git://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-build
     source ~/.bash_profile
 
-    rbenv install 1.9.3-p0
-    rbenv local 1.9.3-p0
+    rbenv install 2.0.0-p0
+    rbenv local 2.0.0-p0
     rbenv rehash
 
 We also need to install bundler which will handle Stringer's dependencies
 
     gem install bundler
     rbenv rehash
+    
+We will also need foreman to run our app
+
+    gem install foreman
 
 Install Stringer and set it up
 ==============================
@@ -74,6 +93,7 @@ Stringer uses environment variables to determine information about your database
     echo 'export STRINGER_DATABASE_USERNAME="stringer"' >> $HOME/.bash_profile
     echo 'export STRINGER_DATABASE_PASSWORD="EDIT_ME"' >> $HOME/.bash_profile
     echo 'export RACK_ENV="production"' >> $HOME/.bash_profile
+    echo "export SECRET_TOKEN=`openssl rand -hex 20`" >> $HOME/.bash_profile
     source ~/.bash_profile
     
 Tell stringer to run the database in production mode, using the postgres database you created earlier.
@@ -83,7 +103,7 @@ Tell stringer to run the database in production mode, using the postgres databas
 
 Run the application:
 
-    bundle exec foreman start
+    foreman start
 
 Set up a cron job to parse the rss feeds. 
 
